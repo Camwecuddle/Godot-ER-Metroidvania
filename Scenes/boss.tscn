@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://0vt4licrv42t"]
+
+[ext_resource type="Script" uid="uid://cxiwwbaqjyv1f" path="res://Scripts/boss.gd" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://dw6kkhwmimcie" path="res://Sprites/WhiteSquare.png" id="2_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://jxo1fi2pr4i6" path="res://Sprites/BossSword1.png" id="3_afpow"]
+[ext_resource type="Texture2D" uid="uid://0i46qt3badql" path="res://Sprites/BossSword2.png" id="4_287tu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
+size = Vector2(2400, 2400)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_287tu"]
+radius = 240.0
+height = 1964.34
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0830c"]
+radius = 250.0
+height = 1937.47
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_1f0kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.101961, 0, 1)
+scale = Vector2(150.5, 150.5)
+texture = ExtResource("2_1f0kj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_287tu")
+
+[node name="Sword1" type="Area2D" parent="."]
+position = Vector2(0, -2200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword1"]
+texture_filter = 1
+position = Vector2(1.12508, 2.60716)
+scale = Vector2(87.8214, 87.8214)
+texture = ExtResource("3_afpow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword1"]
+position = Vector2(36, -100)
+rotation = -0.785398
+shape = SubResource("CapsuleShape2D_287tu")
+
+[node name="Sword2" type="Area2D" parent="."]
+position = Vector2(0, -2200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword2"]
+texture_filter = 1
+scale = Vector2(87.2994, 87.2994)
+texture = ExtResource("4_287tu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword2"]
+position = Vector2(-23, -92)
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_0830c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://o6ykfykw8qdj"]
+
+[ext_resource type="PackedScene" uid="uid://cu4ao8pd0p71n" path="res://Scenes/player.tscn" id="1_8od7v"]
+[ext_resource type="Texture2D" uid="uid://dw6kkhwmimcie" path="res://Sprites/WhiteSquare.png" id="2_qc4db"]
+[ext_resource type="PackedScene" uid="uid://0vt4licrv42t" path="res://Scenes/boss.tscn" id="3_qc4db"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys1qc"]
+size = Vector2(477, 50)
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_8od7v")]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(165.5, 39)
+shape = SubResource("RectangleShape2D_ys1qc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+modulate = Color(0.0858, 0.33, 0.08987, 1)
+position = Vector2(165.5, 39)
+scale = Vector2(29.8125, 3.125)
+texture = ExtResource("2_qc4db")
+
+[node name="Enemy" parent="." instance=ExtResource("3_qc4db")]
+position = Vector2(23, 0)
+rotation = 3.14159
+scale = Vector2(0.01, 0.01)
